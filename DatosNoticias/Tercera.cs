@@ -10,7 +10,7 @@ public class Mercurio : IExtraccionEGuardadoNoticias
 {
     private const string UrlPolitica = $"https://www.latercera.com/categoria/politica/page/";
     private const string UrlEconomia = $"https://www.latercera.com/etiqueta/economia/page/";
-    private const string UrlEducacion = $"https://www.latercera.com/etiqueta/sociedad/page/";
+    private const string UrlSociedad = $"https://www.latercera.com/etiqueta/sociedad/page/";
 
     public void ObtenerDatos(int cantidadPaginas, int tipo)
     {
@@ -30,8 +30,8 @@ public class Mercurio : IExtraccionEGuardadoNoticias
                     ExtraerDatos(cargarPagina, html, listaNoticias, "economia");
                     break;
                 default:
-                    cargarPagina = html.Load($"{UrlEducacion}{i}/");
-                    ExtraerDatos(cargarPagina, html, listaNoticias, "educacion");
+                    cargarPagina = html.Load($"{UrlSociedad}{i}/");
+                    ExtraerDatos(cargarPagina, html, listaNoticias, "sociedad");
                     break;
             }
         }
@@ -56,15 +56,16 @@ public class Mercurio : IExtraccionEGuardadoNoticias
                     .Replace(" (Coordinated Universal Time)", "").NormalizarFecha();
                 var contexto = cargarPagina.DocumentNode.CssSelect("[class='excerpt']").First().InnerText
                     .CleanInnerText();
-                var contenido = cargarPagina.DocumentNode.CssSelect("[class='single-content']").First().InnerText
-                    .CleanInnerText();
+                var contenidoList = cargarPagina.DocumentNode.CssSelect("[class='paragraph  ']")
+                    .Select(x => x.InnerText.CleanInnerText());
+                var contenido = string.Join(" ", contenidoList);
                 var noticia = new Noticia
-                    { Titulo = titulo, Fecha = fecha, Contenido = $"{contexto} {contenido}", Categoria = categoria };
+                    { Titulo = titulo, Fecha = fecha,Contexto = contexto,Contenido = contenido, Categoria = categoria };
                 listaNoticia.Add(noticia);
             }
-            catch(Exception)
+            catch (Exception)
             {
-                Console.WriteLine("error en url https://www.latercera.com"+urlsNoticias);
+                Console.WriteLine("error en url https://www.latercera.com" + urlsNoticias);
             }
         }
     }

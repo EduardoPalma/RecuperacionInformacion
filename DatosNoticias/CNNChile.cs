@@ -62,7 +62,7 @@ public class CnnChile : IExtraccionEGuardadoNoticias
                     .First()
                     .InnerText.CleanInnerText().ReemplazarCaracteresEspeciales();
                 var noticia = new Noticia
-                    { Titulo = titulo, Fecha = fecha, Contenido = $"{contexto} {contenido}", Categoria = categoria };
+                    { Titulo = titulo, Fecha = fecha, Contexto = contexto,Contenido = contenido, Categoria = categoria };
                 listaNoticia.Add(noticia);
             }
             catch (Exception e)

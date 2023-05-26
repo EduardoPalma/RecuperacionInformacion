@@ -10,19 +10,30 @@ using Nest;
 //theClinic.ObtenerDatos(177,3);
 
 var cnnChile = new CnnChile();
-//cnnChile.ObtenerDatos(305,1);
-//cnnChile.ObtenerDatos(500,2);
-//cnnChile.ObtenerDatos(142,3);
+cnnChile.ObtenerDatos(305,1);
+cnnChile.ObtenerDatos(550,2);
+cnnChile.ObtenerDatos(142,3);
 
-var mercurio = new Mercurio();
 
-//mercurio.ObtenerDatos(500,1);
-//mercurio.ObtenerDatos(234,2);
-//mercurio.ObtenerDatos(144,3);
+/*var mercurio = new Mercurio();
 
-var megaNoticias = new MegaNoticias);*/
+mercurio.ObtenerDatos(600,1);
+mercurio.ObtenerDatos(235,2);
+mercurio.ObtenerDatos(144,3);
+
+var megaNoticias = new MegaNoticias();
+megaNoticias.ObtenerDatos(57,1);
+megaNoticias.ObtenerDatos(82,2);
+megaNoticias.ObtenerDatos(34, 3);
+megaNoticias.ObtenerDatos(428,4);
+*/
+var andradio = new AdnRadio();
+andradio.ObtenerDatos(1000,1);
+andradio.ObtenerDatos(450,2);
+andradio.ObtenerDatos(65,3);
+andradio.ObtenerDatos(217,4);
 
 //ElasticSearch.CrearIndice("pruebas-varios");
 //IndexarNoticias.Indexar();
 //ElasticSearch.BusquedaCoincidenciaExacta("pruebas-varios","crecimiento");
-ElasticSearch.BusquedaCoincidenciaDifusa("pruebas-varios","actividad educativa y el congreso");
+//ElasticSearch.BusquedaCoincidenciaDifusa("pruebas-varios","actividad educativa y el congreso");
